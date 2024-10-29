@@ -8,14 +8,10 @@ function inScrew(x, y)
 end
 
 function outScrew(i)
-  local ans=tointeger((math.sqrt(i)+1)/2)
-  local num=(ans*2+1)^2-1
-  local c=num-i
-  local x,y
-  if(c==0) x,y= ans,-ans
-   elseif(c<=2*ans)x,y= ans-c,-ans
-   elseif(c<=4*ans)x,y= -ans,-ans+c-2*ans
-   elseif(c<=6*ans)x,y= c-4*ans-ans,ans
-   else x,y= ans,ans-(c-6*ans)end
+ local ans=tointeger((math.sqrt(i)+1)/2)
+    local num=(ans*2+1)^2-1-i
+    local c,x,y=num/ans
+    x=(c==0) and (ans) or (c<=2) and (ans-num) or (c<=4) and (-ans) or (c<=6) and (num-4*ans-ans) or (ans)
+    y=(c==0) and (-ans) or (c<=2) and (-ans) or (c<=4) and (-ans+num-2*ans) or (c<=6) and ans or (ans-(num-6*ans))
     return x,y
   end
